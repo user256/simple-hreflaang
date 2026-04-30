@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class Simple_Hreflang_Helpers {
+class CannyForge_Hreflang_Helpers {
     public static function get_languages() {
         return array(
             'ar' => 'Arabic',

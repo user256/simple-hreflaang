@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# Install Simple Hreflang plugin into the system WordPress at /var/www/html
-# Run from a terminal: bash install-wp-simple-hreflang.sh
+# Install CannyForge Hreflang plugin into the system WordPress at /var/www/html
+# Run from a terminal: bash install-wp-cannyforge-hreflang.sh
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DEST="/var/www/html/wp-content/plugins/simple-hreflang"
-ZIP_OUT="${SCRIPT_DIR}/simple-hreflang.zip"
+DEST="/var/www/html/wp-content/plugins/cannyforge-hreflang"
+ZIP_OUT="${SCRIPT_DIR}/cannyforge-hreflang.zip"
 
-if [[ -f "${SCRIPT_DIR}/simple-hreflang.php" ]]; then
+if [[ -f "${SCRIPT_DIR}/cannyforge-hreflang.php" ]]; then
   SRC="${SCRIPT_DIR}"
-elif [[ -f "${SCRIPT_DIR}/simple-hreflang/simple-hreflang.php" ]]; then
-  SRC="${SCRIPT_DIR}/simple-hreflang"
+elif [[ -f "${SCRIPT_DIR}/cannyforge-hreflang/cannyforge-hreflang.php" ]]; then
+  SRC="${SCRIPT_DIR}/cannyforge-hreflang"
 else
-  echo "Expected plugin entrypoint at ${SCRIPT_DIR}/simple-hreflang.php or ${SCRIPT_DIR}/simple-hreflang/simple-hreflang.php." >&2
+  echo "Expected plugin entrypoint at ${SCRIPT_DIR}/cannyforge-hreflang.php or ${SCRIPT_DIR}/cannyforge-hreflang/cannyforge-hreflang.php." >&2
   exit 1
 fi
 
@@ -31,7 +31,7 @@ echo "Creating archive ${ZIP_OUT} ..."
 rm -f "${ZIP_OUT}"
 (
   cd "${SRC}"
-  zip -r "${ZIP_OUT}" . -x "*.git*" -x "*node_modules*" -x "*.DS_Store" -x "install-wp-simple-hreflang.sh"
+  zip -r "${ZIP_OUT}" . -x "*.git*" -x "*node_modules*" -x "*.DS_Store" -x "install-wp-cannyforge-hreflang.sh"
 )
 echo "Archive ready."
 
@@ -47,7 +47,7 @@ $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $_SERVER['REQUEST_URI'] = '/';
 require '/var/www/html/wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-$slug = 'simple-hreflang/simple-hreflang.php';
+$slug = 'cannyforge-hreflang/cannyforge-hreflang.php';
 if (is_plugin_active($slug)) {
     echo "Plugin already active.\n";
     exit(0);

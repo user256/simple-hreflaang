@@ -1,4 +1,4 @@
-# Simple Hreflang
+# CannyForge Hreflang
 
 Contributors: User256  
 Tags: hreflang, sitemap, multilingual, translation groups  
@@ -13,13 +13,13 @@ Group equivalent pages and publish hreflang relationships in a dedicated XML sit
 
 ## Description
 
-For small sites with a handful of international pages creating an entire multisite is often excessive. Enter Simple Hreflang. This plugin lets you organize related pages into translation groups with language and optional region settings. It generates a standalone sitemap at `/hreflang-sitemap.xml` so search engines can discover alternate versions of your content.
+For small sites with a handful of international pages creating an entire multisite is often excessive. Enter CannyForge Hreflang. This plugin lets you organize related pages into translation groups with language and optional region settings. It generates a standalone sitemap at `/hreflang-sitemap.xml` so search engines can discover alternate versions of your content.
 
 ## Installation
 
-1. Upload the `simple-hreflang` folder to the `/wp-content/plugins/` directory.
+1. Upload the `cannyforge-hreflang` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Go to **Settings > Simple Hreflang**.
+3. Go to **Settings > CannyForge Hreflang**.
 4. Optionally configure the enabled post types and minimum group size.
 5. If the sitemap URL is not immediately accessible, visit **Settings > Permalinks** and save changes to refresh rewrite rules.
 6. Manage page hreflang values from the plugin settings page or the page edit screen.
@@ -32,7 +32,7 @@ Use the plugin settings page or the page edit screen to assign a Translation Gro
 
 ### Why is my sitemap not generating?
 
-Only groups with enough published pages and valid hreflang values are included. If needed, flush rewrite rules using the button on Settings > Simple Hreflang.
+Only groups with enough published pages and valid hreflang values are included. If needed, flush rewrite rules using the button on Settings > CannyForge Hreflang.
 
 ### What does x-default do?
 

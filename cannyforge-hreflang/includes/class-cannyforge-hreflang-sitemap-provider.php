@@ -4,26 +4,26 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class Simple_Hreflang_Sitemap_Provider {
+class CannyForge_Hreflang_Sitemap_Provider {
     private $repository;
 
-    public function __construct( Simple_Hreflang_Repository $repository ) {
+    public function __construct( CannyForge_Hreflang_Repository $repository ) {
         $this->repository = $repository;
     }
 
     public function register_rewrite() {
-        add_rewrite_rule( '^hreflang-sitemap\.xml$', 'index.php?simple_hreflang_sitemap=1', 'top' );
+        add_rewrite_rule( '^hreflang-sitemap\.xml$', 'index.php?cannyforge_hreflang_sitemap=1', 'top' );
         add_filter(
             'query_vars',
             static function ( $vars ) {
-                $vars[] = 'simple_hreflang_sitemap';
+                $vars[] = 'cannyforge_hreflang_sitemap';
                 return $vars;
             }
         );
     }
 
     public function maybe_render() {
-        if ( '1' !== get_query_var( 'simple_hreflang_sitemap' ) ) {
+        if ( '1' !== get_query_var( 'cannyforge_hreflang_sitemap' ) ) {
             return;
         }
 
@@ -65,7 +65,7 @@ class Simple_Hreflang_Sitemap_Provider {
     }
 
     public static function activate() {
-        add_rewrite_rule( '^hreflang-sitemap\.xml$', 'index.php?simple_hreflang_sitemap=1', 'top' );
+        add_rewrite_rule( '^hreflang-sitemap\.xml$', 'index.php?cannyforge_hreflang_sitemap=1', 'top' );
         flush_rewrite_rules();
     }
 

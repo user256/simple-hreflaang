@@ -1,0 +1,129 @@
+.cannyforge-hreflang-post-type-option {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.cannyforge-hreflang-inline-form {
+    display: inline;
+}
+
+.cannyforge-hreflang-toolbar {
+    margin-bottom: 12px;
+}
+
+.cannyforge-hreflang-toolbar-button {
+    margin-left: 10px;
+}
+
+.cannyforge-hreflang-status {
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.cannyforge-hreflang-status.is-success {
+    background: #dff0d8;
+    color: #263238;
+    border: 1px solid #c3e6cb;
+}
+
+.cannyforge-hreflang-status.is-error {
+    background: #fdd;
+    color: #900;
+    border: 1px solid #f5c6cb;
+}
+
+.cannyforge-hreflang-group-separator td {
+    background: #f9f9f9;
+    font-weight: 600;
+    padding: 10px 8px;
+    border-top: 2px solid #ccc;
+}
+
+.cannyforge-hreflang-group-start {
+    border-top: 3px solid #ddd !important;
+}
+
+.cannyforge-hreflang-status-good {
+    color: #067c2c;
+    font-weight: 600;
+}
+
+.cannyforge-hreflang-status-bad {
+    color: #8a2424;
+}
+
+.cannyforge-hreflang-issues-list {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.cannyforge-hreflang-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba( 0, 0, 0, 0.5 );
+}
+
+.cannyforge-hreflang-modal[hidden] {
+    display: none;
+}
+
+.cannyforge-hreflang-modal__dialog {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba( 0, 0, 0, 0.3 );
+}
+
+.cannyforge-hreflang-modal__heading {
+    margin-top: 0;
+}
+
+.cannyforge-hreflang-modal__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cannyforge-hreflang-submit {
+    min-width: 120px;
+}
+
+.cannyforge-hreflang-field-note {
+    margin-top: 6px;
+}
+
+.cannyforge-hreflang-gap-top {
+    margin-top: 6px;
+}
+
+.cannyforge-hreflang-audit-panel {
+    margin-top: 16px;
+}
+
+.cannyforge-hreflang-audit-panel summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cannyforge-hreflang-audit-ok {
+    color: #067c2c;
+    font-weight: 600;
+}
+
+.cannyforge-hreflang-audit-results {
+    margin: 12px 0 0;
+    padding-left: 18px;
+}
+
+.cannyforge-hreflang-audit-results code,
+.cannyforge-hreflang-audit-results a {
+    display: inline-block;
+    margin-left: 8px;
+}
