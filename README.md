@@ -3,13 +3,20 @@
 Contributors: User256  
 Tags: hreflang, sitemap, multilingual, translation groups  
 Requires at least: 5.8  
-Tested up to: 6.9  
+Tested up to: 7.0  
 Requires PHP: 7.4  
-Stable tag: 0.1.0  
+Stable tag: 0.1.1  
 License: MIT  
 License URI: https://opensource.org/licenses/MIT
 
 Group equivalent pages and publish hreflang relationships in a dedicated XML sitemap.
+
+## Repository Layout
+
+- `cannyforge-hreflang/`: plugin code that ships to WordPress.org
+- `assets/wporg/`: WordPress.org plugin page assets such as screenshots and icon
+- `dist/`: local build artifacts
+- `docs/legacy/`: review notes and legacy planning files that should not be published
 
 ## Description
 
@@ -43,12 +50,17 @@ Mark one page in each group as x-default so search engines know the default alte
 1. Settings page with translation group and hreflang controls.
 2. Add to group modal.
 3. Generated hreflang sitemap URL.
+4. Sidebar editor controls on the page edit screen.
 
 ## Support
 
 For support, report issues in the source repo or contact the plugin author. This plugin is intended for small sites managing manual hreflang groupings and does not provide automatic translation or URL rewriting beyond sitemap output.
 
 ## Changelog
+
+### 0.1.1
+
+- Tested compatibility with WordPress 7.0.
 
 ### 0.1.0
 

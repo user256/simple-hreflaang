@@ -2,8 +2,8 @@
 /**
  * Plugin Name: CannyForge Hreflang
  * Description: Manage small translation groups for pages and generate a dedicated hreflang XML sitemap.
- * Version: 0.1.0
- * Author: OpenAI
+ * Version: 0.1.1
+ * Author: User256
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * License: MIT
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'CANNYFORGE_HREFLANG_VERSION', '0.1.0' );
+define( 'CANNYFORGE_HREFLANG_VERSION', '0.1.1' );
 define( 'CANNYFORGE_HREFLANG_FILE', __FILE__ );
 define( 'CANNYFORGE_HREFLANG_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CANNYFORGE_HREFLANG_URL', plugin_dir_url( __FILE__ ) );

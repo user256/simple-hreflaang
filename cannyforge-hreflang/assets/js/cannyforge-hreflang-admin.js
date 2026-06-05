@@ -5,14 +5,14 @@
             return;
         }
 
-        const groupSelect = container.querySelector( '.cannyforge-hreflang-group-select, #sh_modal_group' );
+        const groupSelect = container.querySelector( '.cannyforge-hreflang-group-select, #cannyforge_hreflang_modal_group' );
         if ( groupSelect && groupInput.value.trim() ) {
             groupSelect.value = '';
         }
     }
 
     function bindGroupInputSync( root ) {
-        root.querySelectorAll( '.cannyforge-hreflang-group-new-input, #sh_modal_group_new' ).forEach( function( input ) {
+        root.querySelectorAll( '.cannyforge-hreflang-group-new-input, #cannyforge_hreflang_modal_group_new' ).forEach( function( input ) {
             [ 'input', 'change', 'keyup' ].forEach( function( eventName ) {
                 input.addEventListener( eventName, function() {
                     clearGroupSelectOnInput( input );
@@ -74,19 +74,19 @@
         bindGroupInputSync( document );
 
         const openButton = document.getElementById( 'cannyforge_hreflang_add_to_group_btn' );
-        const closeButton = document.getElementById( 'sh_modal_cancel' );
+        const closeButton = document.getElementById( 'cannyforge_hreflang_modal_cancel' );
         const form = document.getElementById( 'cannyforge_hreflang_add_form' );
-        const submitButton = document.getElementById( 'sh_modal_submit' );
-        const modalTitle = document.getElementById( 'sh_modal_heading' );
-        const groupSelect = document.getElementById( 'sh_modal_group' );
-        const groupNewInput = document.getElementById( 'sh_modal_group_new' );
-        const languageSelect = document.getElementById( 'sh_modal_language' );
-        const regionSelect = document.getElementById( 'sh_modal_region' );
-        const postSelectSection = document.getElementById( 'sh_modal_post_select_section' );
-        const postSelect = document.getElementById( 'sh_modal_post_select' );
-        const currentPageSection = document.getElementById( 'sh_modal_current_page_section' );
-        const currentPageTitle = document.getElementById( 'sh_modal_current_page_title' );
-        const hiddenPostId = document.getElementById( 'sh_modal_post_id' );
+        const submitButton = document.getElementById( 'cannyforge_hreflang_modal_submit' );
+        const modalTitle = document.getElementById( 'cannyforge_hreflang_modal_heading' );
+        const groupSelect = document.getElementById( 'cannyforge_hreflang_modal_group' );
+        const groupNewInput = document.getElementById( 'cannyforge_hreflang_modal_group_new' );
+        const languageSelect = document.getElementById( 'cannyforge_hreflang_modal_language' );
+        const regionSelect = document.getElementById( 'cannyforge_hreflang_modal_region' );
+        const postSelectSection = document.getElementById( 'cannyforge_hreflang_modal_post_select_section' );
+        const postSelect = document.getElementById( 'cannyforge_hreflang_modal_post_select' );
+        const currentPageSection = document.getElementById( 'cannyforge_hreflang_modal_current_page_section' );
+        const currentPageTitle = document.getElementById( 'cannyforge_hreflang_modal_current_page_title' );
+        const hiddenPostId = document.getElementById( 'cannyforge_hreflang_modal_post_id' );
         const deleteButton = document.getElementById( 'cannyforge_hreflang_delete_all_btn' );
         const setDefaultNonce = document.getElementById( 'cannyforge_hreflang_set_default_nonce' );
         const ajaxUrl = config.ajaxUrl || window.ajaxurl || '';
@@ -171,7 +171,7 @@
             groupNewInput.value = '';
             languageSelect.value = data.language || 'en';
             regionSelect.value = data.region || '';
-            document.getElementById( 'sh_modal_x_default' ).checked = !! data.isDefault;
+            document.getElementById( 'cannyforge_hreflang_modal_x_default' ).checked = !! data.isDefault;
             updateRegionOptions();
         }
 
@@ -204,6 +204,17 @@
                 language: 'en',
                 region: '',
                 isDefault: false,
+            } );
+        } );
+
+        document.querySelectorAll( '.cannyforge-hreflang-group-add-btn' ).forEach( function( btn ) {
+            btn.addEventListener( 'click', function() {
+                openModal( 'add', {
+                    group: btn.getAttribute( 'data-group' ) || '',
+                    language: 'en',
+                    region: '',
+                    isDefault: false,
+                } );
             } );
         } );
 

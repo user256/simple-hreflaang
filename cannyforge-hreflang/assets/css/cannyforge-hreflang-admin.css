@@ -3,6 +3,44 @@
     margin-bottom: 4px;
 }
 
+.cannyforge-hreflang-header {
+    background: #fff8f3;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin: -10px -20px 20px -22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cannyforge-hreflang-header svg {
+    width: 200px;
+    height: 50px;
+    display: block;
+}
+
+.cannyforge-hreflang-header-content h1 {
+    color: #0f172a;
+    margin: 0 0 6px;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.cannyforge-hreflang-header-content p {
+    color: #64748b;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.cannyforge-hreflang-settings-wrap {
+    background: #fff;
+    padding: 0 20px 20px;
+    margin: 0 -20px;
+}
+
 .cannyforge-hreflang-inline-form {
     display: inline;
 }
@@ -38,6 +76,22 @@
     font-weight: 600;
     padding: 10px 8px;
     border-top: 2px solid #ccc;
+}
+
+.cannyforge-hreflang-group-separator-inner {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cannyforge-hreflang-group-add-btn {
+    min-width: 28px;
+    padding: 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.9;
+    vertical-align: middle;
 }
 
 .cannyforge-hreflang-group-start {
@@ -101,6 +155,17 @@
 
 .cannyforge-hreflang-gap-top {
     margin-top: 6px;
+}
+
+.cannyforge-hreflang-preview-panel {
+    margin-top: 12px;
+    padding: 10px;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+}
+
+.cannyforge-hreflang-issues-list-spaced {
+    margin: 8px 0 0 18px;
 }
 
 .cannyforge-hreflang-audit-panel {

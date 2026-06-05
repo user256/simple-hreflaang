@@ -1,3 +1,6 @@
+dist/
+tmp/
+PRIVATE.md
 todo.md
 private*
 .*/

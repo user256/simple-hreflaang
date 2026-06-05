@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class CannyForge_Hreflang_Repository {
-    const META_GROUP      = '_cannyforge_hreflang_group';
-    const META_LANGUAGE   = '_cannyforge_hreflang_lang';
-    const META_REGION     = '_cannyforge_hreflang_region';
-    const META_X_DEFAULT  = '_cannyforge_hreflang_is_default';
+    const META_GROUP      = 'cannyforge_hreflang_group';
+    const META_LANGUAGE   = 'cannyforge_hreflang_lang';
+    const META_REGION     = 'cannyforge_hreflang_region';
+    const META_X_DEFAULT  = 'cannyforge_hreflang_is_default';
     const OPTION_SETTINGS = 'cannyforge_hreflang_settings';
 
     public function get_settings() {
@@ -58,10 +58,6 @@ class CannyForge_Hreflang_Repository {
             delete_post_meta( $post_id, self::META_X_DEFAULT );
         }
 
-        $grouped_posts = $this->get_grouped_posts();
-        if ( count( $grouped_posts ) < 100 && function_exists( 'flush_rewrite_rules' ) ) {
-            flush_rewrite_rules();
-        }
     }
 
     public function clear_group_x_default_on_other_posts( $post_id, $group ) {
@@ -112,7 +108,8 @@ class CannyForge_Hreflang_Repository {
 
     public function get_valid_groups_for_sitemap() {
         $settings       = $this->get_settings();
-        $min_group_size = max( 1, (int) $settings['min_group_size'] );
+        // Hreflang alternates require at least two distinct URLs; never emit single-URL "clusters".
+        $min_group_size = max( 2, (int) $settings['min_group_size'] );
         $groups         = array();
 
         foreach ( $this->get_grouped_posts() as $row ) {
@@ -176,9 +173,9 @@ class CannyForge_Hreflang_Repository {
             return array();
         }
 
-        $group     = get_post_meta( $post->ID, self::META_GROUP, true );
-        $language  = get_post_meta( $post->ID, self::META_LANGUAGE, true );
-        $region    = get_post_meta( $post->ID, self::META_REGION, true );
+        $group      = get_post_meta( $post->ID, self::META_GROUP, true );
+        $language   = get_post_meta( $post->ID, self::META_LANGUAGE, true );
+        $region     = get_post_meta( $post->ID, self::META_REGION, true );
         $is_default = '1' === (string) get_post_meta( $post->ID, self::META_X_DEFAULT, true );
 
         $permalink      = get_permalink( $post );
@@ -192,10 +189,10 @@ class CannyForge_Hreflang_Repository {
             'post_status' => $post->post_status,
             'edit_link'   => get_edit_post_link( $post->ID, '' ),
             'permalink'   => $permalink,
-            'group'       => Simple_Hreflang_Helpers::sanitize_group( $group ),
-            'language'    => Simple_Hreflang_Helpers::sanitize_language( $language ),
-            'region'      => Simple_Hreflang_Helpers::sanitize_region( $region ),
-            'hreflang'    => Simple_Hreflang_Helpers::build_hreflang( $language, $region ),
+            'group'       => CannyForge_Hreflang_Helpers::sanitize_group( $group ),
+            'language'    => CannyForge_Hreflang_Helpers::sanitize_language( $language ),
+            'region'      => CannyForge_Hreflang_Helpers::sanitize_region( $region ),
+            'hreflang'    => CannyForge_Hreflang_Helpers::build_hreflang( $language, $region ),
             'is_default'  => $is_default,
             'canonical'   => $canonical_url,
             'is_noindex'  => $is_noindex,
@@ -602,7 +599,7 @@ class CannyForge_Hreflang_Repository {
     }
 
     private function get_robots_rules_for_wildcard_user_agent() {
-        $cache_key = 'simple_hreflang_robots_rules';
+        $cache_key = 'cannyforge_hreflang_robots_rules';
         $cached    = get_transient( $cache_key );
         if ( is_array( $cached ) ) {
             return $cached;
@@ -612,7 +609,7 @@ class CannyForge_Hreflang_Repository {
             home_url( '/robots.txt' ),
             array(
                 'timeout'    => 6,
-                'user-agent' => 'SimpleHreflang/' . SIMPLE_HREFLANG_VERSION,
+                'user-agent' => 'CannyForgeHreflang/' . CANNYFORGE_HREFLANG_VERSION,
             )
         );
 
@@ -673,4 +670,5 @@ class CannyForge_Hreflang_Repository {
         set_transient( $cache_key, $rules, 10 * MINUTE_IN_SECONDS );
         return $rules;
     }
+
 }

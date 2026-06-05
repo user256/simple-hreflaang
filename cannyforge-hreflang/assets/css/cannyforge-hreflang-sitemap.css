@@ -1,0 +1,268 @@
+/* Public sitemap browser view — aligned with wp-admin CannyForge Hreflang header */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    background: #f0f0f1;
+    color: #1d2327;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.cannyforge-hreflang-sitemap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 20px 40px;
+}
+
+/* Matches .cannyforge-hreflang-header in admin (no negative margins — not inside .wrap) */
+.cannyforge-hreflang-sitemap-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 25px;
+    margin-bottom: 0;
+    background: #fff8f3;
+    border: 1px solid #fed7aa;
+    border-radius: 8px 8px 0 0;
+    border-bottom: none;
+}
+
+.cannyforge-hreflang-sitemap-brand svg {
+    width: 200px;
+    height: 50px;
+    display: block;
+}
+
+.cannyforge-hreflang-sitemap-header-content h1 {
+    margin: 0 0 6px;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.cannyforge-hreflang-sitemap-header-content p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+/* White “settings” panel under banner */
+.cannyforge-hreflang-sitemap-content {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.cannyforge-hreflang-sitemap-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 32px;
+    padding: 18px 24px;
+    background: #f6f7f7;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.cannyforge-hreflang-sitemap-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.cannyforge-hreflang-sitemap-stat-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: #e84a1c;
+    line-height: 1;
+}
+
+.cannyforge-hreflang-sitemap-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #646970;
+}
+
+.cannyforge-hreflang-sitemap-empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: #646970;
+}
+
+.cannyforge-hreflang-sitemap-empty h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.cannyforge-hreflang-sitemap-empty p {
+    margin: 0 auto;
+    max-width: 420px;
+    font-size: 14px;
+}
+
+.cannyforge-hreflang-sitemap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cannyforge-hreflang-sitemap-table thead {
+    background: #f6f7f7;
+}
+
+.cannyforge-hreflang-sitemap-table th {
+    text-align: left;
+    padding: 12px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #646970;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.cannyforge-hreflang-sitemap-table td {
+    padding: 16px 20px;
+    vertical-align: top;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 14px;
+}
+
+.cannyforge-hreflang-sitemap-table tbody tr:hover {
+    background: #f6f7f7;
+}
+
+.cannyforge-hreflang-sitemap-table tbody tr.cannyforge-hreflang-sitemap-group-sep:hover {
+    background: #f6f7f7;
+}
+
+.cannyforge-hreflang-sitemap-group-sep td {
+    background: #f6f7f7;
+    padding: 10px 20px;
+    border-top: 2px solid #c3c4c7;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.cannyforge-hreflang-sitemap-group-sep-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+}
+
+.cannyforge-hreflang-sitemap-group-x-default {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    font-size: 13px;
+}
+
+.cannyforge-hreflang-sitemap-group-x-default-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #475569;
+}
+
+.cannyforge-hreflang-sitemap-group-x-default-link {
+    color: #e84a1c;
+    text-decoration: none;
+    word-break: break-all;
+    max-width: min( 100%, 420px );
+}
+
+.cannyforge-hreflang-sitemap-group-x-default-link:hover {
+    text-decoration: underline;
+}
+
+.cannyforge-hreflang-sitemap-group-label {
+    color: #646970;
+    font-weight: 600;
+}
+
+.cannyforge-hreflang-sitemap-group-name {
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.cannyforge-hreflang-sitemap-url-cell {
+    max-width: 360px;
+    word-break: break-all;
+}
+
+.cannyforge-hreflang-sitemap-url-cell a {
+    color: #e84a1c;
+    text-decoration: none;
+}
+
+.cannyforge-hreflang-sitemap-url-cell a:hover {
+    text-decoration: underline;
+}
+
+.cannyforge-hreflang-sitemap-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316 0%, #e84a1c 100%);
+}
+
+.cannyforge-hreflang-sitemap-tag-x-default {
+    background: linear-gradient(135deg, #334155 0%, #0f172a 100%);
+}
+
+.cannyforge-hreflang-sitemap-alternates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cannyforge-hreflang-sitemap-alternate {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #1d2327;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+}
+
+.cannyforge-hreflang-sitemap-alternate:hover {
+    background: #ffedd5;
+    border-color: #f97316;
+}
+
+.cannyforge-hreflang-sitemap-alternate-code {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+    color: #fff;
+    background: linear-gradient(135deg, #f97316 0%, #e84a1c 100%);
+}

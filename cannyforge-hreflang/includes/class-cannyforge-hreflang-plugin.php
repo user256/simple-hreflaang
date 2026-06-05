@@ -24,7 +24,8 @@ class CannyForge_Hreflang_Plugin {
         add_action( 'admin_init', array( $this->settings, 'register_settings' ) );
         add_action( 'admin_enqueue_scripts', array( $this->settings, 'enqueue_assets' ) );
         add_action( 'init', array( $this->sitemap, 'register_rewrite' ) );
-        add_action( 'template_redirect', array( $this->sitemap, 'maybe_render' ) );
+        add_action( 'template_redirect', array( $this->sitemap, 'maybe_serve_xsl' ), 0 );
+        add_action( 'template_redirect', array( $this->sitemap, 'maybe_render' ), 1 );
         add_action( 'wp_ajax_cannyforge_hreflang_add_to_group', array( $this, 'ajax_add_to_group' ) );
         add_action( 'wp_ajax_cannyforge_hreflang_delete_all_groups', array( $this, 'ajax_delete_all_groups' ) );
         add_action( 'wp_ajax_cannyforge_hreflang_set_x_default', array( $this, 'ajax_set_x_default' ) );

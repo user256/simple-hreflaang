@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#E84A1C"/>
+      <stop offset="60%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <linearGradient id="anvilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon mark -->
+  <!-- Anvil body -->
+  <rect x="8" y="42" width="46" height="16" rx="3" fill="url(#anvilGrad)"/>
+  <!-- Anvil top horn/face -->
+  <path d="M12 42 L52 42 L52 32 Q52 28 48 28 L28 28 Q22 28 18 32 Z" fill="url(#anvilGrad)"/>
+  <!-- Anvil horn (left) -->
+  <path d="M8 35 Q4 35 4 38 L4 42 L12 42 L12 32 Z" fill="#1E293B"/>
+  <!-- Anvil base legs -->
+  <rect x="14" y="58" width="12" height="6" rx="2" fill="#0F172A"/>
+  <rect x="36" y="58" width="12" height="6" rx="2" fill="#0F172A"/>
+
+  <!-- Flame above anvil -->
+  <path d="M31 10 C31 10 26 16 27 22 C25 19 23 17 24 13 C20 18 20 24 23 28 C21 27 19 25 19 22 C17 27 20 35 28 36 C35 37 39 33 39 28 C42 30 41 34 39 36 C44 33 45 26 42 22 C43 26 41 28 40 28 C42 23 40 17 37 14 C38 18 36 21 35 22 C36 17 34 12 31 10Z" fill="url(#flameGrad)"/>
+
+  <!-- Spark dots -->
+  <circle cx="44" cy="22" r="1.5" fill="#FBBF24" opacity="0.9"/>
+  <circle cx="47" cy="18" r="1" fill="#FCD34D" opacity="0.7"/>
+  <circle cx="15" cy="20" r="1.5" fill="#FCA5A5" opacity="0.8"/>
+
+  <!-- Wordmark -->
+  <!-- "Canny" -->
+  <text x="68" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#0F172A">Canny</text>
+  <!-- "Forge" in accent color -->
+  <text x="156" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#E84A1C">Forge</text>
+
+  <!-- Tagline -->
+  <text x="68" y="63" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" letter-spacing="2" fill="#64748B">WORDPRESS PLUGINS</text>
+</svg>

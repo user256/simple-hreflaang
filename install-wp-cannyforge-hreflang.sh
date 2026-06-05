@@ -6,7 +6,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEST="/var/www/html/wp-content/plugins/cannyforge-hreflang"
-ZIP_OUT="${SCRIPT_DIR}/cannyforge-hreflang.zip"
+DIST_DIR="${SCRIPT_DIR}/dist"
+ZIP_OUT="${DIST_DIR}/cannyforge-hreflang.zip"
 
 if [[ -f "${SCRIPT_DIR}/cannyforge-hreflang.php" ]]; then
   SRC="${SCRIPT_DIR}"
@@ -28,6 +29,7 @@ if ! command -v zip >/dev/null 2>&1; then
 fi
 
 echo "Creating archive ${ZIP_OUT} ..."
+mkdir -p "${DIST_DIR}"
 rm -f "${ZIP_OUT}"
 (
   cd "${SRC}"

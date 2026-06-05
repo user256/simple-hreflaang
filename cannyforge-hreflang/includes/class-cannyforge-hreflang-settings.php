@@ -107,7 +107,7 @@ class CannyForge_Hreflang_Settings {
 
         return array(
             'post_types'      => empty( $post_types ) ? array( 'page' ) : $post_types,
-            'min_group_size'  => max( 1, (int) ( $input['min_group_size'] ?? 2 ) ),
+            'min_group_size'  => max( 2, (int) ( $input['min_group_size'] ?? 2 ) ),
             'include_private' => 0,
         );
     }
@@ -147,7 +147,37 @@ class CannyForge_Hreflang_Settings {
         $show_audit_results   = $this->is_notice_flag_set( self::NOTICE_AUDITED_KEY );
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e( 'CannyForge Hreflang', 'cannyforge-hreflang' ); ?></h1>
+            <div class="cannyforge-hreflang-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="200" height="50">
+                  <defs>
+                    <linearGradient id="cfhFlame" x1="0%" y1="100%" x2="0%" y2="0%">
+                      <stop offset="0%" stop-color="#E84A1C"/>
+                      <stop offset="60%" stop-color="#F97316"/>
+                      <stop offset="100%" stop-color="#FBBF24"/>
+                    </linearGradient>
+                    <linearGradient id="cfhAnvil" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#334155"/>
+                      <stop offset="100%" stop-color="#0F172A"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="8" y="42" width="46" height="16" rx="3" fill="url(#cfhAnvil)"/>
+                  <path d="M12 42 L52 42 L52 32 Q52 28 48 28 L28 28 Q22 28 18 32 Z" fill="url(#cfhAnvil)"/>
+                  <path d="M8 35 Q4 35 4 38 L4 42 L12 42 L12 32 Z" fill="#1E293B"/>
+                  <rect x="14" y="58" width="12" height="6" rx="2" fill="#0F172A"/>
+                  <rect x="36" y="58" width="12" height="6" rx="2" fill="#0F172A"/>
+                  <path d="M31 10 C31 10 26 16 27 22 C25 19 23 17 24 13 C20 18 20 24 23 28 C21 27 19 25 19 22 C17 27 20 35 28 36 C35 37 39 33 39 28 C42 30 41 34 39 36 C44 33 45 26 42 22 C43 26 41 28 40 28 C42 23 40 17 37 14 C38 18 36 21 35 22 C36 17 34 12 31 10Z" fill="url(#cfhFlame)"/>
+                  <circle cx="44" cy="22" r="1.5" fill="#FBBF24" opacity="0.9"/>
+                  <circle cx="47" cy="18" r="1" fill="#FCD34D" opacity="0.7"/>
+                  <circle cx="15" cy="20" r="1.5" fill="#FCA5A5" opacity="0.8"/>
+                  <text x="68" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#0F172A">Canny</text>
+                  <text x="156" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.5" fill="#E84A1C">Forge</text>
+                  <text x="68" y="63" font-family="'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" letter-spacing="2" fill="#64748B">WORDPRESS PLUGINS</text>
+                </svg>
+                <div class="cannyforge-hreflang-header-content">
+                    <h1><?php esc_html_e( 'Hreflang', 'cannyforge-hreflang' ); ?></h1>
+                    <p><?php esc_html_e( 'Multilingual page relationships for SEO optimization', 'cannyforge-hreflang' ); ?></p>
+                </div>
+            </div>
 
             <?php if ( $this->is_notice_flag_set( self::NOTICE_FLUSHED_KEY ) ) : ?>
                 <div class="notice notice-success inline">
@@ -175,7 +205,7 @@ class CannyForge_Hreflang_Settings {
 
             <form method="post" action="options.php">
                 <?php
-                settings_fields( 'simple_hreflang_settings_group' );
+                settings_fields( 'cannyforge_hreflang_settings_group' );
                 do_settings_sections( self::MENU_SLUG );
                 submit_button();
                 ?>
@@ -241,7 +271,17 @@ class CannyForge_Hreflang_Settings {
                             <?php if ( $prev_group !== $row['group'] ) : ?>
                                 <tr class="cannyforge-hreflang-group-separator">
                                     <td colspan="9">
-                                        <?php echo esc_html__( 'Group:', 'cannyforge-hreflang' ); ?> <strong><?php echo esc_html( $row['group'] ); ?></strong>
+                                        <span class="cannyforge-hreflang-group-separator-inner">
+                                            <?php echo esc_html__( 'Group:', 'cannyforge-hreflang' ); ?>
+                                            <strong><?php echo esc_html( $row['group'] ); ?></strong>
+                                            <button
+                                                type="button"
+                                                class="button button-small cannyforge-hreflang-group-add-btn"
+                                                data-group="<?php echo esc_attr( $row['group'] ); ?>"
+                                                title="<?php echo esc_attr__( 'Add a page to this group', 'cannyforge-hreflang' ); ?>"
+                                                aria-label="<?php echo esc_attr__( 'Add a page to this group', 'cannyforge-hreflang' ); ?>"
+                                            >+</button>
+                                        </span>
                                     </td>
                                 </tr>
                             <?php endif; ?>
@@ -330,16 +370,16 @@ class CannyForge_Hreflang_Settings {
             </details>
         </div>
 
-        <div id="cannyforge_hreflang_modal" class="cannyforge-hreflang-modal" hidden style="display:none;">
+        <div id="cannyforge_hreflang_modal" class="cannyforge-hreflang-modal" hidden>
             <div class="cannyforge-hreflang-modal__dialog">
-                <h3 id="sh_modal_heading" class="cannyforge-hreflang-modal__heading"><?php esc_html_e( 'Add Page to Group', 'cannyforge-hreflang' ); ?></h3>
+                <h3 id="cannyforge_hreflang_modal_heading" class="cannyforge-hreflang-modal__heading"><?php esc_html_e( 'Add Page to Group', 'cannyforge-hreflang' ); ?></h3>
 
                 <form id="cannyforge_hreflang_add_form">
                     <?php wp_nonce_field( 'cannyforge_hreflang_add_to_group', 'cannyforge_hreflang_nonce_add' ); ?>
 
                     <p>
-                        <label for="sh_modal_group"><strong><?php esc_html_e( 'Group Name', 'cannyforge-hreflang' ); ?></strong></label><br />
-                        <select id="sh_modal_group" name="group" class="widefat">
+                        <label for="cannyforge_hreflang_modal_group"><strong><?php esc_html_e( 'Group Name', 'cannyforge-hreflang' ); ?></strong></label><br />
+                        <select id="cannyforge_hreflang_modal_group" name="group" class="widefat">
                             <option value=""><?php esc_html_e( 'Create new group...', 'cannyforge-hreflang' ); ?></option>
                             <?php foreach ( $this->repository->get_all_groups() as $group ) : ?>
                                 <option value="<?php echo esc_attr( $group ); ?>"><?php echo esc_html( $group ); ?></option>
@@ -347,27 +387,27 @@ class CannyForge_Hreflang_Settings {
                         </select>
                     </p>
                     <p class="description cannyforge-hreflang-field-note"><?php esc_html_e( 'Or type a new group name below:', 'cannyforge-hreflang' ); ?></p>
-                    <input type="text" id="sh_modal_group_new" class="widefat cannyforge-hreflang-gap-top" placeholder="pricing-pages" />
+                    <input type="text" id="cannyforge_hreflang_modal_group_new" class="widefat cannyforge-hreflang-gap-top" placeholder="pricing-pages" />
                     <p class="description"><?php esc_html_e( 'Use lowercase with hyphens. Leave empty to use selection above.', 'cannyforge-hreflang' ); ?></p>
 
-                    <p id="sh_modal_post_select_section">
-                        <label for="sh_modal_post_select"><strong><?php esc_html_e( 'Select Page', 'cannyforge-hreflang' ); ?></strong></label><br />
-                        <select id="sh_modal_post_select" class="widefat">
+                    <p id="cannyforge_hreflang_modal_post_select_section">
+                        <label for="cannyforge_hreflang_modal_post_select"><strong><?php esc_html_e( 'Select Page', 'cannyforge-hreflang' ); ?></strong></label><br />
+                        <select id="cannyforge_hreflang_modal_post_select" class="widefat">
                             <option value=""><?php esc_html_e( 'Choose a page...', 'cannyforge-hreflang' ); ?></option>
                             <?php foreach ( $this->get_available_posts_for_modal() as $post ) : ?>
                                 <option value="<?php echo esc_attr( $post->ID ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?> (<?php echo esc_html( $post->post_status ); ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </p>
-                    <p id="sh_modal_current_page_section" hidden>
+                    <p id="cannyforge_hreflang_modal_current_page_section" hidden>
                         <strong><?php esc_html_e( 'Editing page', 'cannyforge-hreflang' ); ?>:</strong>
-                        <span id="sh_modal_current_page_title"></span>
+                        <span id="cannyforge_hreflang_modal_current_page_title"></span>
                     </p>
-                    <input type="hidden" id="sh_modal_post_id" name="post_id" value="" />
+                    <input type="hidden" id="cannyforge_hreflang_modal_post_id" name="post_id" value="" />
 
                     <p>
-                        <label for="sh_modal_language"><strong><?php esc_html_e( 'Language', 'cannyforge-hreflang' ); ?></strong></label><br />
-                        <select id="sh_modal_language" name="language" class="widefat" required>
+                        <label for="cannyforge_hreflang_modal_language"><strong><?php esc_html_e( 'Language', 'cannyforge-hreflang' ); ?></strong></label><br />
+                        <select id="cannyforge_hreflang_modal_language" name="language" class="widefat" required>
                             <option value=""><?php esc_html_e( 'Select language', 'cannyforge-hreflang' ); ?></option>
                             <?php foreach ( CannyForge_Hreflang_Helpers::get_languages() as $code => $label ) : ?>
                                 <option value="<?php echo esc_attr( $code ); ?>"><?php echo esc_html( sprintf( '%s (%s)', $label, $code ) ); ?></option>
@@ -376,8 +416,8 @@ class CannyForge_Hreflang_Settings {
                     </p>
 
                     <p>
-                        <label for="sh_modal_region"><strong><?php esc_html_e( 'Region', 'cannyforge-hreflang' ); ?></strong></label><br />
-                        <select id="sh_modal_region" name="region" class="widefat">
+                        <label for="cannyforge_hreflang_modal_region"><strong><?php esc_html_e( 'Region', 'cannyforge-hreflang' ); ?></strong></label><br />
+                        <select id="cannyforge_hreflang_modal_region" name="region" class="widefat">
                             <?php foreach ( CannyForge_Hreflang_Helpers::get_regions() as $code => $label ) : ?>
                                 <option value="<?php echo esc_attr( $code ); ?>" data-label="<?php echo esc_attr( $label ); ?>"><?php echo esc_html( '' === $code ? $label : sprintf( '%s (%s)', $label, $code ) ); ?></option>
                             <?php endforeach; ?>
@@ -386,14 +426,14 @@ class CannyForge_Hreflang_Settings {
 
                     <p>
                         <label>
-                            <input type="checkbox" id="sh_modal_x_default" name="is_default" value="1" />
+                            <input type="checkbox" id="cannyforge_hreflang_modal_x_default" name="is_default" value="1" />
                             <?php esc_html_e( 'Use as x-default', 'cannyforge-hreflang' ); ?>
                         </label>
                     </p>
 
                     <div class="cannyforge-hreflang-modal__actions">
-                        <input type="submit" class="button button-primary cannyforge-hreflang-submit" id="sh_modal_submit" value="<?php echo esc_attr__( 'Save', 'cannyforge-hreflang' ); ?>" />
-                        <button type="button" class="button" id="sh_modal_cancel"><?php esc_html_e( 'Cancel', 'cannyforge-hreflang' ); ?></button>
+                        <input type="submit" class="button button-primary cannyforge-hreflang-submit" id="cannyforge_hreflang_modal_submit" value="<?php echo esc_attr__( 'Save', 'cannyforge-hreflang' ); ?>" />
+                        <button type="button" class="button" id="cannyforge_hreflang_modal_cancel"><?php esc_html_e( 'Cancel', 'cannyforge-hreflang' ); ?></button>
                     </div>
                 </form>
             </div>
@@ -572,7 +612,7 @@ class CannyForge_Hreflang_Settings {
             array_filter(
                 $posts,
                 static function ( $post ) {
-                    return '' === (string) get_post_meta( $post->ID, Simple_Hreflang_Repository::META_GROUP, true );
+                    return '' === (string) get_post_meta( $post->ID, CannyForge_Hreflang_Repository::META_GROUP, true );
                 }
             )
         );

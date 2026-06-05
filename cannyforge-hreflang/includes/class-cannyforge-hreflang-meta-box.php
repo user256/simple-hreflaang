@@ -47,8 +47,8 @@ class CannyForge_Hreflang_Meta_Box {
                     </optgroup>
                 <?php endif; ?>
             </select>
-            <p class="description" style="margin-top:6px;"><?php esc_html_e( 'Or type a new group name below to create one:', 'cannyforge-hreflang' ); ?></p>
-            <input type="text" class="widefat cannyforge-hreflang-group-new-input" id="cannyforge_hreflang_group_new" name="cannyforge_hreflang_group_new" placeholder="pricing-pages" style="margin-top:6px;" />
+            <p class="description cannyforge-hreflang-field-note"><?php esc_html_e( 'Or type a new group name below to create one:', 'cannyforge-hreflang' ); ?></p>
+            <input type="text" class="widefat cannyforge-hreflang-group-new-input cannyforge-hreflang-gap-top" id="cannyforge_hreflang_group_new" name="cannyforge_hreflang_group_new" placeholder="pricing-pages" />
             <p class="description"><?php esc_html_e( 'Use lowercase with hyphens. Leave empty to use selection above.', 'cannyforge-hreflang' ); ?></p>
         </p>
 
@@ -82,7 +82,7 @@ class CannyForge_Hreflang_Meta_Box {
             </label>
         </p>
 
-        <p style="margin-top:12px;padding:10px;background:#f6f7f7;border:1px solid #dcdcde;">
+        <p class="cannyforge-hreflang-preview-panel">
             <strong><?php esc_html_e( 'Preview', 'cannyforge-hreflang' ); ?>:</strong><br />
             <span id="cannyforge_hreflang_preview_value">
                 <?php if ( ! empty( $data['hreflang'] ) ) : ?>
@@ -98,16 +98,16 @@ class CannyForge_Hreflang_Meta_Box {
             </span>
         </p>
 
-        <p style="margin-top:12px;padding:10px;background:#f6f7f7;border:1px solid #dcdcde;">
+        <p class="cannyforge-hreflang-preview-panel">
             <strong><?php esc_html_e( 'Hreflang health', 'cannyforge-hreflang' ); ?>:</strong><br />
             <?php if ( empty( $data['group'] ) ) : ?>
                 <em><?php esc_html_e( 'Assign this page to a translation group to run cluster checks.', 'cannyforge-hreflang' ); ?></em>
             <?php elseif ( empty( $health_issues ) ) : ?>
-                <span style="color:#067c2c;"><?php esc_html_e( 'No noindex/canonical conflicts detected.', 'cannyforge-hreflang' ); ?></span>
+                <span class="cannyforge-hreflang-status-good"><?php esc_html_e( 'No noindex/canonical conflicts detected.', 'cannyforge-hreflang' ); ?></span>
             <?php else : ?>
-                <ul style="margin:8px 0 0 18px;">
+                <ul class="cannyforge-hreflang-issues-list cannyforge-hreflang-issues-list-spaced">
                     <?php foreach ( $health_issues as $issue ) : ?>
-                        <li style="color:#8a2424;"><?php echo esc_html( $issue ); ?></li>
+                        <li class="cannyforge-hreflang-status-bad"><?php echo esc_html( $issue ); ?></li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
@@ -116,7 +116,7 @@ class CannyForge_Hreflang_Meta_Box {
     }
 
     public function save( $post_id ) {
-        if ( ! isset( $_POST['simple_hreflang_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['simple_hreflang_nonce'] ) ), 'simple_hreflang_save_meta' ) ) {
+        if ( ! isset( $_POST['cannyforge_hreflang_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cannyforge_hreflang_nonce'] ) ), 'cannyforge_hreflang_save_meta' ) ) {
             return;
         }
 
@@ -128,16 +128,16 @@ class CannyForge_Hreflang_Meta_Box {
             return;
         }
 
-        $group = isset( $_POST['simple_hreflang_group'] ) ? Simple_Hreflang_Helpers::sanitize_group( sanitize_text_field( wp_unslash( $_POST['simple_hreflang_group'] ) ) ) : '';
-        
+        $group = isset( $_POST['cannyforge_hreflang_group'] ) ? CannyForge_Hreflang_Helpers::sanitize_group( sanitize_text_field( wp_unslash( $_POST['cannyforge_hreflang_group'] ) ) ) : '';
+
         // Allow creating a new group from the text input
-        if ( empty( $group ) && isset( $_POST['simple_hreflang_group_new'] ) ) {
-            $group = Simple_Hreflang_Helpers::sanitize_group( sanitize_text_field( wp_unslash( $_POST['simple_hreflang_group_new'] ) ) );
+        if ( empty( $group ) && isset( $_POST['cannyforge_hreflang_group_new'] ) ) {
+            $group = CannyForge_Hreflang_Helpers::sanitize_group( sanitize_text_field( wp_unslash( $_POST['cannyforge_hreflang_group_new'] ) ) );
         }
 
-        $language   = isset( $_POST['simple_hreflang_lang'] ) ? Simple_Hreflang_Helpers::sanitize_language( sanitize_text_field( wp_unslash( $_POST['simple_hreflang_lang'] ) ) ) : '';
-        $region     = isset( $_POST['simple_hreflang_region'] ) ? Simple_Hreflang_Helpers::sanitize_region( sanitize_text_field( wp_unslash( $_POST['simple_hreflang_region'] ) ) ) : '';
-        $is_default = isset( $_POST['simple_hreflang_is_default'] ) ? 1 : 0;
+        $language   = isset( $_POST['cannyforge_hreflang_lang'] ) ? CannyForge_Hreflang_Helpers::sanitize_language( sanitize_text_field( wp_unslash( $_POST['cannyforge_hreflang_lang'] ) ) ) : '';
+        $region     = isset( $_POST['cannyforge_hreflang_region'] ) ? CannyForge_Hreflang_Helpers::sanitize_region( sanitize_text_field( wp_unslash( $_POST['cannyforge_hreflang_region'] ) ) ) : '';
+        $is_default = isset( $_POST['cannyforge_hreflang_is_default'] ) ? 1 : 0;
 
         $post = get_post( $post_id );
         if ( $post && 'publish' !== $post->post_status && ( ! empty( $group ) || ! empty( $language ) || ! empty( $region ) || $is_default ) ) {
